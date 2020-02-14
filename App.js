@@ -29,30 +29,28 @@ const App = () => {
   }
 
   useEffect(() => {
-    start && Animated.sequence([
-      Animated.parallel([
-        Animated.timing(
-          scale.current,
-          {
-            toValue: 1,
-            duration: 1500,
-          }
-        ),
-        Animated.timing(
-          color.current,
-          {
-            toValue: 1,
-            duration: 1500,
-          }
-        ),
-        Animated.timing(
-          opacity.current,
-          {
-            toValue: 1,
-            duration: 1500,
-          }
-        ),
-      ]),
+    start && Animated.parallel([
+      Animated.timing(
+        scale.current,
+        {
+          toValue: 1,
+          duration: 1500,
+        }
+      ),
+      Animated.timing(
+        color.current,
+        {
+          toValue: 1,
+          duration: 1500,
+        }
+      ),
+      Animated.timing(
+        opacity.current,
+        {
+          toValue: 1,
+          duration: 1500,
+        }
+      ),
     ]).start(() => {
       setStart(false);
       setRightAnswer(false);
