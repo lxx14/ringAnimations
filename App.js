@@ -11,52 +11,34 @@ import {
 
 const App = () => {
 
-  const scale = useRef(new Animated.Value(0));
-  const color = useRef(new Animated.Value(0));
-  const opacity = useRef(new Animated.Value(0));
+  const animValue = useRef(new Animated.Value(0));
 
   const [start, setStart] = useState(false);
   const [rightAnswer, setRightAnswer] = useState(false);
 
   const rigthColor = {
-    inputRange: [0, 0.4, 0.7, 1],
+    inputRange: [0, 0.2, 0.7, 1],
     outputRange: ['white', 'green', 'green', 'white'],
   }
 
   const wrongColor = {
-    inputRange: [0, 0.4, 0.7, 1],
+    inputRange: [0, 0.2, 0.7, 1],
     outputRange: ['white', 'red', 'red', 'white'],
   }
 
+  const defaultInputReange = [0, 0.1, 0.8, 1];
+
   useEffect(() => {
-    start && Animated.parallel([
-      Animated.timing(
-        scale.current,
-        {
-          toValue: 1,
-          duration: 1500,
-        }
-      ),
-      Animated.timing(
-        color.current,
-        {
-          toValue: 1,
-          duration: 1500,
-        }
-      ),
-      Animated.timing(
-        opacity.current,
-        {
-          toValue: 1,
-          duration: 1500,
-        }
-      ),
-    ]).start(() => {
+    start && Animated.timing(
+      animValue.current,
+      {
+        toValue: 1,
+        duration: 1200,
+      }
+    ).start(() => {
       setStart(false);
       setRightAnswer(false);
-      scale.current.setValue(0);
-      color.current.setValue(0);
-      opacity.current.setValue(0);
+      animValue.current.setValue(0);
     });
   }, [start]);
 
@@ -80,62 +62,62 @@ const App = () => {
       <Animated.View style={{
         ...styles.bigRound,
         transform: [{
-          scale: scale.current.interpolate({
-            inputRange: [0, 0.2, 0.8, 1],
+          scale: animValue.current.interpolate({
+            inputRange: defaultInputReange,
             outputRange: [1, 3, 3, 1],
           })
         }],
-        backgroundColor: rightAnswer ? color.current.interpolate(rigthColor) : color.current.interpolate(wrongColor),
-        opacity: opacity.current.interpolate({
-          inputRange: [0, 0.2, 0.8, 1],
+        backgroundColor: rightAnswer ? animValue.current.interpolate(rigthColor) : animValue.current.interpolate(wrongColor),
+        opacity: animValue.current.interpolate({
+          inputRange: defaultInputReange,
           outputRange: [0.1, 1, 1, 0.1],
         })
       }} />
       <Animated.View style={{
         ...styles.smallRound,
         transform: [{
-          scale: scale.current.interpolate({
-            inputRange: [0, 0.2, 0.8, 1],
+          scale: animValue.current.interpolate({
+            inputRange: defaultInputReange,
             outputRange: [1, 6, 6, 1],
           })
         }],
-        backgroundColor: rightAnswer ? color.current.interpolate(rigthColor) : color.current.interpolate(wrongColor),
-        opacity: opacity.current.interpolate({
-          inputRange: [0, 0.2, 0.8, 1],
+        backgroundColor: rightAnswer ? animValue.current.interpolate(rigthColor) : animValue.current.interpolate(wrongColor),
+        opacity: animValue.current.interpolate({
+          inputRange: defaultInputReange,
           outputRange: [0.1, 1, 1, 0.1],
         })
       }} />
       <Animated.View style={{
         ...styles.averageRound,
         transform: [{
-          scale: scale.current.interpolate({
-            inputRange: [0, 0.2, 0.8, 1],
+          scale: animValue.current.interpolate({
+            inputRange: defaultInputReange,
             outputRange: [1, 5, 5, 1],
           })
         }],
-        backgroundColor: rightAnswer ? color.current.interpolate(rigthColor) : color.current.interpolate(wrongColor),
-        opacity: opacity.current.interpolate({
-          inputRange: [0, 0.2, 0.8, 1],
+        backgroundColor: rightAnswer ? animValue.current.interpolate(rigthColor) : animValue.current.interpolate(wrongColor),
+        opacity: animValue.current.interpolate({
+          inputRange: defaultInputReange,
           outputRange: [0.1, 1, 1, 0.1],
         })
       }} />
       <Animated.View style={{
         ...styles.veryBigRound,
         transform: [{
-          scale: scale.current.interpolate({
-            inputRange: [0, 0.2, 0.8, 1],
+          scale: animValue.current.interpolate({
+            inputRange: defaultInputReange,
             outputRange: [1, 3, 3, 1],
           })
         }],
-        backgroundColor: rightAnswer ? color.current.interpolate(rigthColor) : color.current.interpolate(wrongColor),
-        opacity: opacity.current.interpolate({
-          inputRange: [0, 0.2, 0.8, 1],
+        backgroundColor: rightAnswer ? animValue.current.interpolate(rigthColor) : animValue.current.interpolate(wrongColor),
+        opacity: animValue.current.interpolate({
+          inputRange: defaultInputReange,
           outputRange: [0.1, 1, 1, 0.1],
         })
       }} />
       <Animated.View style={{
         ...styles.image,
-        opacity: opacity.current.interpolate({
+        opacity: animValue.current.interpolate({
           inputRange: [0, 0.4, 0.8, 1],
           outputRange: [0, 1, 1, 0],
         }),
